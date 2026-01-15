@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/ATMSystem/ATMSystem.iml" filepath="$PROJECT_DIR$/ATMSystem/ATMSystem.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Collection_Code/Collection_Code.iml" filepath="$PROJECT_DIR$/Collection_Code/Collection_Code.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JavaCodes/JavaCodes.iml" filepath="$PROJECT_DIR$/JavaCodes/JavaCodes.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/WOSS-JAVA-INTERNSHIP.iml" filepath="$PROJECT_DIR$/.idea/WOSS-JAVA-INTERNSHIP.iml" />
+    </modules>
+  </component>
+</project>
