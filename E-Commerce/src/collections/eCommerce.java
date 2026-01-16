@@ -24,23 +24,15 @@ class Shopping_Cart{
     private int quantity;
     private double price;
 
-    public String getName(){
+    public String getName() {
         return this.name;
-    }
-    public void setName(String name){
-        this.name=name;
     }
     public int getQuantity(){
         return this.quantity;
     }
-    public void setQuantity(int quantity){
-        this.quantity=quantity;
-    }
+
     public double getPrice(){
         return this.price;
-    }
-    public void setPrice(double price){
-        this.price=price;
     }
 
     public Shopping_Cart(String name,int quantity,double price){
