@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class VovelsUpCase {
+public class VovelsUpCase_20 {
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
@@ -8,6 +8,7 @@ public class VovelsUpCase {
         String s = sc.nextLine();
         StringBuilder s1 = new StringBuilder();
 
+        System.out.println(s + " prajapati");
         for(char c : s.toCharArray()){
             if(c == 'a' || c=='e' || c=='i' || c=='o' || c=='u'){
                 System.out.println((Character.toUpperCase(c)));
