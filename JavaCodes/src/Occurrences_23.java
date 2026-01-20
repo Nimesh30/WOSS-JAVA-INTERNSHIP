@@ -1,4 +1,3 @@
-import java.awt.image.ImageProducer;
 import java.util.HashMap;
 import java.util.Scanner;
 

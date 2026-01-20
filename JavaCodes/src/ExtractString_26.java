@@ -13,7 +13,6 @@ public class ExtractString_26   {
         ArrayList<String> letters = new ArrayList<>();
         ArrayList<Integer>digits = new ArrayList<>();
 
-
         for(Character c :s.toCharArray()){
             if(Character.isDigit(c)){
                 digits.add(Integer.parseInt(c+""));

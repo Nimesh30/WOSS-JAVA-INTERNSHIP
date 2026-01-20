@@ -17,7 +17,6 @@ public class EvenOddSequence_12 {
             }
         }
 
-
 //
         for (int key : nums) {
             System.out.print(key + " ");

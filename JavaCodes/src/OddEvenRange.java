@@ -31,7 +31,7 @@ public class OddEvenRange {
                     break;
             }
         } else {
-            System.out.println("Start should less than to end");
+            System.out.println("Start should be less than to end");
         }
     }
 }

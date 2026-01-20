@@ -8,7 +8,8 @@ public class PrintTable {
         int table = sc.nextInt();
 
         for (int i = 1; i <=10 ; i++) {
-            System.out.println(table + " * " + i + " = " + table*i ); //8 * 1 = 8;
+//            System.out.format( "%d * %d = %d\n",table, i , table*i ); //8 * 1 = 8;
+            System.out.printf("%d * %d = %d%n", table, i, table * i);
         }
     }
 }

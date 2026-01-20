@@ -1,9 +1,9 @@
 import java.util.HashMap;
 
-public class CheckSentance_22 {
+public class CheckSentence_22 {
     public static void main(String[] args) {
 
-        String s1 = "nimesh dalpatbhai prajapati prajapati";
+        String s1 = "Code never lie...";
 
         String[] s2 = s1.split(" ");
 
