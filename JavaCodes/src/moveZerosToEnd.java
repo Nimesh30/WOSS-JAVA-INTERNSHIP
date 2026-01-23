@@ -6,7 +6,7 @@ public class moveZerosToEnd {
         moveZerosToEnd(arr);
         System.out.println(Arrays.toString(arr));
     }
-
+//MOve all moveZerosToEnd toEnd end
     public static void moveZerosToEnd(int[] arr) {
         int n = arr.length;
         int count = 0; // counts non-zero elements
