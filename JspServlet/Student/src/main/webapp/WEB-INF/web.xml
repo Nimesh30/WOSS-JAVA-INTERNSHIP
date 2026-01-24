@@ -1,0 +1,30 @@
+<!DOCTYPE web-app PUBLIC
+        "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+        "http://java.sun.com/dtd/web-app_2_3.dtd">
+
+<web-app>
+
+  <!-- Application Name -->
+  <display-name>Student Management System</display-name>
+
+  <!-- ========================= -->
+  <!-- Student Servlet Config    -->
+  <!-- ========================= -->
+  <servlet>
+    <servlet-name>StudentServlet</servlet-name>
+    <servlet-class>controller.StudentServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>StudentServlet</servlet-name>
+    <url-pattern>/StudentServlet</url-pattern>
+  </servlet-mapping>
+
+  <!-- ========================= -->
+  <!-- Default Landing Page      -->
+  <!-- ========================= -->
+  <welcome-file-list>
+    <welcome-file>StudentServlet</welcome-file>
+  </welcome-file-list>
+
+</web-app>
