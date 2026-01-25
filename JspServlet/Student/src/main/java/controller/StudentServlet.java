@@ -1,5 +1,7 @@
 package controller;
 
+//Jakarta supports in tomcat's 10+  version
+
 //import java.io.IOException;
 //import dao.StudentDAO;
 //import jakarta.servlet.RequestDispatcher;
@@ -10,11 +12,9 @@ package controller;
 //import model.Student;
 //import java.sql.Date;
 
-
+//Tomcat 9 supports javax
 import java.io.IOException;
 import java.sql.Date;
-import java.util.List;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -43,7 +43,6 @@ public class StudentServlet extends HttpServlet {
                         req.getRequestDispatcher("manageStudents.jsp");
                 rd.forward(req, res);
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }
