@@ -48,6 +48,7 @@ if (list != null && !list.isEmpty()) {
     <td>
         <a href="StudentServlet?action=delete&id=<%= s.getId() %>"
            onclick="return confirm('Are you sure?')">Delete</a>
+        <a href="StudentServlet?action=edit&id=<%=s.getId() %>">Update</a>
     </td>
 </tr>
 <%

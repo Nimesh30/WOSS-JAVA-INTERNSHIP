@@ -68,6 +68,57 @@ public class StudentDAO {
         ps.executeUpdate();
     }
 
+    public Student getStudentById(int id) throws Exception {
+        Student s = null;
+        Connection con = getConnection();
+        PreparedStatement ps =
+                con.prepareStatement("SELECT * FROM students WHERE id=?");
+        ps.setInt(1, id);
+
+        ResultSet rs = ps.executeQuery();
+        if (rs.next()) {
+            s = new Student();
+            s.setId(rs.getInt("id"));
+            s.setFirstName(rs.getString("first_name"));
+            s.setLastName(rs.getString("last_name"));
+            s.setEmail(rs.getString("email"));
+            s.setDob(rs.getDate("dob"));
+            s.setGender(rs.getString("gender"));
+            s.setAdmissionDate(rs.getDate("admission_date"));
+            s.setStudentClass(rs.getString("class"));
+            s.setCity(rs.getString("city"));
+            s.setStateCode(rs.getString("state_code"));
+            s.setCountry(rs.getString("country"));
+        }
+        return s;
+    }
+
+
+    public void updateStudent(Student s) throws Exception {
+        String sql = "UPDATE students SET " +
+                "first_name=?, last_name=?, email=?, dob=?, gender=?, " +
+                "admission_date=?, class=?, city=?, state_code=?, country=? " +
+                "WHERE id=?";
+
+        Connection con = getConnection();
+        PreparedStatement ps = con.prepareStatement(sql);
+
+        ps.setString(1, s.getFirstName());
+        ps.setString(2, s.getLastName());
+        ps.setString(3, s.getEmail());
+        ps.setDate(4, s.getDob());
+        ps.setString(5, s.getGender());
+        ps.setDate(6, s.getAdmissionDate());
+        ps.setString(7, s.getStudentClass());
+        ps.setString(8, s.getCity());
+        ps.setString(9, s.getStateCode());
+        ps.setString(10, s.getCountry());
+        ps.setInt(11, s.getId());
+
+        ps.executeUpdate();
+    }
+
+
 
 }
 

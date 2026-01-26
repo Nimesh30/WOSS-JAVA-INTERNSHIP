@@ -13,6 +13,7 @@ package controller;
 //import java.sql.Date;
 
 //Tomcat 9 supports javax
+
 import java.io.IOException;
 import java.sql.Date;
 import javax.servlet.RequestDispatcher;
@@ -23,10 +24,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.StudentDAO;
 import model.Student;
+
 public class StudentServlet extends HttpServlet {
 
-    protected void doGet(HttpServletRequest req, HttpServletResponse res)
-            throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
         String action = req.getParameter("action");
 
@@ -37,10 +38,17 @@ public class StudentServlet extends HttpServlet {
                 int id = Integer.parseInt(req.getParameter("id"));
                 dao.deleteStudent(id);
                 res.sendRedirect("StudentServlet");
+            } else if ("edit".equals(action)) {
+                int id = Integer.parseInt(req.getParameter("id"));
+
+                Student s = dao.getStudentById(id);
+                req.setAttribute("student", s);
+
+                RequestDispatcher rd = req.getRequestDispatcher("studentForm.jsp");
+                rd.forward(req, res);
             } else {
                 req.setAttribute("students", dao.getAllStudents());
-                RequestDispatcher rd =
-                        req.getRequestDispatcher("manageStudents.jsp");
+                RequestDispatcher rd = req.getRequestDispatcher("manageStudents.jsp");
                 rd.forward(req, res);
             }
         } catch (Exception e) {
@@ -53,10 +61,20 @@ public class StudentServlet extends HttpServlet {
 
         try {
             Student s = new Student();
+
+            String id = req.getParameter("id");
+            if (id != null && !id.isEmpty()) {
+                s.setId(Integer.parseInt(id)); // EDIT
+            }
+
             s.setFirstName(req.getParameter("firstName"));
             s.setLastName(req.getParameter("lastName"));
             s.setEmail(req.getParameter("email"));
-            s.setDob(Date.valueOf(req.getParameter("dob")));
+
+            if (req.getParameter("dob") != null && !req.getParameter("dob").isEmpty()) {
+                s.setDob(Date.valueOf(req.getParameter("dob")));
+            }
+
             s.setGender(req.getParameter("gender"));
             s.setAdmissionDate(Date.valueOf(req.getParameter("admissionDate")));
             s.setStudentClass(req.getParameter("studentClass"));
@@ -65,7 +83,12 @@ public class StudentServlet extends HttpServlet {
             s.setCountry(req.getParameter("country"));
 
             StudentDAO dao = new StudentDAO();
-            dao.addStudent(s);
+
+            if (id == null || id.isEmpty()) {
+                dao.addStudent(s);     // ADD
+            } else {
+                dao.updateStudent(s);  // UPDATE
+            }
 
             res.sendRedirect("StudentServlet");
 
@@ -73,6 +96,7 @@ public class StudentServlet extends HttpServlet {
             e.printStackTrace();
         }
     }
+
 }
 
 
