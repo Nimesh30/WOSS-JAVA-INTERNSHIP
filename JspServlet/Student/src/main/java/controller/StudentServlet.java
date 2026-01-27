@@ -1,21 +1,18 @@
 package controller;
 
-//Jakarta supports in tomcat's 10+  version
+//Jakarta supports in tomcat's 10+ version
 
-//import java.io.IOException;
-//import dao.StudentDAO;
 //import jakarta.servlet.RequestDispatcher;
 //import jakarta.servlet.ServletException;
 //import jakarta.servlet.http.HttpServlet;
 //import jakarta.servlet.http.HttpServletRequest;
 //import jakarta.servlet.http.HttpServletResponse;
-//import model.Student;
-//import java.sql.Date;
 
 //Tomcat 9 supports javax
 
 import java.io.IOException;
 import java.sql.Date;
+import java.sql.SQLIntegrityConstraintViolationException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -34,19 +31,21 @@ public class StudentServlet extends HttpServlet {
         try {
             StudentDAO dao = new StudentDAO();
 
-            if ("delete".equals(action)) {
+            if ("delete".equals(action)) {                  //   it will catch action from manageStudent.jsp
                 int id = Integer.parseInt(req.getParameter("id"));
                 dao.deleteStudent(id);
                 res.sendRedirect("StudentServlet");
-            } else if ("edit".equals(action)) {
-                int id = Integer.parseInt(req.getParameter("id"));
 
+            } else if ("edit".equals(action)) {             // it will catch action from manageStudent.jsp
+                int id = Integer.parseInt(req.getParameter("id"));
+//                System.out.println("In edit part..." + id);
                 Student s = dao.getStudentById(id);
                 req.setAttribute("student", s);
 
                 RequestDispatcher rd = req.getRequestDispatcher("studentForm.jsp");
                 rd.forward(req, res);
-            } else {
+
+            } else {                                // Display all students...
                 req.setAttribute("students", dao.getAllStudents());
                 RequestDispatcher rd = req.getRequestDispatcher("manageStudents.jsp");
                 rd.forward(req, res);
@@ -56,15 +55,14 @@ public class StudentServlet extends HttpServlet {
         }
     }
 
-    protected void doPost(HttpServletRequest req, HttpServletResponse res)
-            throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
         try {
             Student s = new Student();
 
             String id = req.getParameter("id");
             if (id != null && !id.isEmpty()) {
-                s.setId(Integer.parseInt(id)); // EDIT
+                s.setId(Integer.parseInt(id)); // for EDIT
             }
 
             s.setFirstName(req.getParameter("firstName"));
@@ -83,16 +81,20 @@ public class StudentServlet extends HttpServlet {
             s.setCountry(req.getParameter("country"));
 
             StudentDAO dao = new StudentDAO();
+            String isEdit = req.getParameter("isEdit");
 
             if (id == null || id.isEmpty()) {
                 dao.addStudent(s);     // ADD
+                res.sendRedirect("StudentServlet");
             } else {
                 dao.updateStudent(s);  // UPDATE
+                res.sendRedirect("StudentServlet");
             }
 
-            res.sendRedirect("StudentServlet");
 
         } catch (Exception e) {
+            req.setAttribute("error", "Email must be unique");
+            req.getRequestDispatcher("studentForm.jsp").forward(req, res);
             e.printStackTrace();
         }
     }

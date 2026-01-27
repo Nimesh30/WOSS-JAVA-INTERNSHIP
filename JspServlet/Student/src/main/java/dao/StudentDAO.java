@@ -100,22 +100,25 @@ public class StudentDAO {
                 "admission_date=?, class=?, city=?, state_code=?, country=? " +
                 "WHERE id=?";
 
-        Connection con = getConnection();
-        PreparedStatement ps = con.prepareStatement(sql);
+        try(Connection con = getConnection();
+        PreparedStatement ps = con.prepareStatement(sql);) {
 
-        ps.setString(1, s.getFirstName());
-        ps.setString(2, s.getLastName());
-        ps.setString(3, s.getEmail());
-        ps.setDate(4, s.getDob());
-        ps.setString(5, s.getGender());
-        ps.setDate(6, s.getAdmissionDate());
-        ps.setString(7, s.getStudentClass());
-        ps.setString(8, s.getCity());
-        ps.setString(9, s.getStateCode());
-        ps.setString(10, s.getCountry());
-        ps.setInt(11, s.getId());
+            ps.setString(1, s.getFirstName());
+            ps.setString(2, s.getLastName());
+            ps.setString(3, s.getEmail());
+            ps.setDate(4, s.getDob());
+            ps.setString(5, s.getGender());
+            ps.setDate(6, s.getAdmissionDate());
+            ps.setString(7, s.getStudentClass());
+            ps.setString(8, s.getCity());
+            ps.setString(9, s.getStateCode());
+            ps.setString(10, s.getCountry());
+            ps.setInt(11, s.getId());
 
-        ps.executeUpdate();
+            ps.executeUpdate();
+        }catch(Exception e){
+            throw new Exception("Duplicate_Email");
+        }
     }
 
 

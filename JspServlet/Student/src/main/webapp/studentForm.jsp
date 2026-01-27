@@ -1,19 +1,18 @@
+<%@ page isELIgnored="false" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <c:set var="isEdit" value="${not empty student}" />
 
-<c:if test="${isEdit}">
-    <input type="hidden" name="id" value="${student.id}">
-</c:if>
 <!DOCTYPE html>
 <html>
 <head>
   <title>Student Form</title>
+
   <style>
     body {
       font-family: Arial, sans-serif;
       background-color: #f4f6f8;
     }
-
     form {
       width: 380px;
       margin: 40px auto;
@@ -22,22 +21,11 @@
       border-radius: 6px;
       box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
     }
-
-    form h2 {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
     input, select {
       width: 100%;
       padding: 8px;
-      margin-top: 5px;
       margin-bottom: 12px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      box-sizing: border-box;
     }
-
     input[type="submit"] {
       background-color: #4CAF50;
       color: white;
@@ -45,40 +33,36 @@
       cursor: pointer;
       font-size: 16px;
     }
-
-    input[type="submit"]:hover {
-      background-color: #45a049;
-    }
-
-    label {
-      font-weight: bold;
-    }
   </style>
 </head>
 
 <body>
 
-<form action="StudentServlet" method="post">
+<form action="StudentServlet" method="post" onsubmit="return validateStudentForm();">
+
   <h2>${isEdit ? "Update Student" : "Student Registration"}</h2>
 
+  <!-- Hidden fields for EDIT -->
+  <c:if test="${isEdit}">
+    <input type="hidden" name="id" value="${student.id}">
+  </c:if>
+
+  <input type="hidden" name="isEdit" value="${isEdit}">
 
   <label>First Name *</label>
-<input type="text" name="firstName"
-       value="${student.firstName}" maxlength="50" required>
-
+  <input type="text" id="firstName" name="firstName"
+         value="${student.firstName}" maxlength="50" required>
 
   <label>Last Name</label>
-  <input type="text" name="lastName"
+  <input type="text" id="lastName" name="lastName"
          value="${student.lastName}" maxlength="50">
 
-
   <label>Email *</label>
-  <input type="email" name="email"
-         value="${student.email}" maxlength="100" required>
-
+  <input type="email" id="email" name="email"
+         value="${student.email}" required>
 
   <label>DOB</label>
-  <input type="date" name="dob" value="${student.dob}">
+  <input type="date" id="dob" name="dob" value="${student.dob}">
 
   <label>Gender *</label>
   <select name="gender" required>
@@ -87,28 +71,30 @@
     <option value="Female" ${student.gender == 'Female' ? 'selected' : ''}>Female</option>
   </select>
 
-
   <label>Admission Date *</label>
-  <input type="date" name="admissionDate" value="${student.admissionDate}" required>
+  <input type="date" id="admissionDate" name="admissionDate"
+         value="${student.admissionDate}" required>
 
   <label>Class</label>
-  <input type="text" name="studentClass" value="${student.studentClass}" maxlength="10">
+  <input type="text" name="studentClass" value="${student.studentClass}">
 
   <label>City</label>
-  <input type="text" name="city" value="${student.city}" maxlength="50">
+  <input type="text" id="city" name="city" value="${student.city}">
 
   <label>State Code</label>
-  <input type="text" name="stateCode" value="${student.stateCode}"  maxlength="2">
+  <input type="text" id="stateCode" name="stateCode"
+         value="${student.stateCode}" maxlength="2">
 
   <label>Country</label>
-  <input type="text" name="country" value="${student.country}"  maxlength="50">
-
-  <h2>${isEdit ? "Update Student" : "Student Registration"}</h2>
+  <input type="text" id="country" name="country" value="${student.country}">
 
   <input type="submit" value="${isEdit ? 'Update' : 'Save'}">
+  <input type="button" value="Back" onclick="history.back()">
+<c:if test="${not empty error}">
+    <script>alert("${error}");</script>
 
-  <input type="button" onclick="history.back()" value="Back">
+</c:if>
 </form>
-
+<script src="js/validation.js"></script>
 </body>
 </html>

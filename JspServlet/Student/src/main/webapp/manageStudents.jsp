@@ -2,6 +2,9 @@
 <%@ page import="model.Student" %>
 <%@ page import="java.time.LocalDate" %>
 <%@ page import="java.time.temporal.ChronoUnit" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page isELIgnored="false" %>
 
 <h2>Manage Students</h2>
 <a href="studentForm.jsp">Add Student</a>
@@ -32,10 +35,10 @@ if (list != null && !list.isEmpty()) {
             long totalDays = ChronoUnit.DAYS.between(birthDate, today);
             long years = totalDays / 365;
             long extraDays = totalDays % 365;
-            long weeks = extraDays / 7;
-            long days = extraDays % 7;
+            long months = extraDays / 30;
+            long days = extraDays % 30;
 
-            age = years + " years, " + weeks + " weeks, " + days + " days";
+            age = years + " years, " + months + " months, " + days + " days";
         }
 %>
 <tr>
