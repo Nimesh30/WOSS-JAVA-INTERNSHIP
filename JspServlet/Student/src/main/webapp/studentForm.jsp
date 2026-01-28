@@ -92,7 +92,6 @@
   <input type="button" value="Back" onclick="history.back()">
 <c:if test="${not empty error}">
     <script>alert("${error}");</script>
-
 </c:if>
 </form>
 <script src="js/validation.js"></script>

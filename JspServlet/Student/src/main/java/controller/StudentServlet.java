@@ -90,9 +90,8 @@ public class StudentServlet extends HttpServlet {
                 dao.updateStudent(s);  // UPDATE
                 res.sendRedirect("StudentServlet");
             }
-
-
         } catch (Exception e) {
+            // Add email validation...
             req.setAttribute("error", "Email must be unique");
             req.getRequestDispatcher("studentForm.jsp").forward(req, res);
             e.printStackTrace();
