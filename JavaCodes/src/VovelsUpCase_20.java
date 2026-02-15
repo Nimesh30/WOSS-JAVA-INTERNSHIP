@@ -8,7 +8,7 @@ public class VovelsUpCase_20 {
         String s = sc.nextLine();
         StringBuilder s1 = new StringBuilder();
 
-        System.out.println(s + " prajapati");
+        System.out.println(s + " Hello");
         for(char c : s.toCharArray()){
             if(c == 'a' || c=='e' || c=='i' || c=='o' || c=='u'){
                 System.out.println((Character.toUpperCase(c)));
