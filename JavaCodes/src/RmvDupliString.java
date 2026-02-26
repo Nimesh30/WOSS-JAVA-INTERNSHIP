@@ -4,14 +4,14 @@ class RmvDupliString {
 
 
         String str = "programming";
-        String result = "";
-        String dupli = "";
+        StringBuilder result = new StringBuilder();
+        StringBuilder dupli = new StringBuilder();
 
         for (int i = 0; i < str.length(); i++) {
-            if (result.indexOf(str.charAt(i)) == -1) {
-                result += str.charAt(i);
+            if (result.toString().indexOf(str.charAt(i)) == -1) {
+                result.append(str.charAt(i));
             }else{
-                dupli += str.charAt(i);
+                dupli.append(str.charAt(i));
             }
         }
 
