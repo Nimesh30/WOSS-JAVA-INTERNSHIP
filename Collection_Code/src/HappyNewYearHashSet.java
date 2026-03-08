@@ -1,7 +1,14 @@
 import java.util.HashSet;
-
+    // A Happy Number is a number that eventually becomes 1
+    // when you repeatedly replace the number with the sum of the squares of its digits.
 public class HappyNewYearHashSet {
 
+//        Take the number.
+//        Square each digit.
+//        Add the squares.
+//        Repeat the process with the new number.
+//        If the result becomes 1 → Happy Number.
+//        If the process repeats in a loop and never reaches 1 → Not a Happy Number.
 
     public static void main(String[] args) {
 
